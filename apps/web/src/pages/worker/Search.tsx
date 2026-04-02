@@ -58,7 +58,8 @@ export default function WorkerSearch() {
   const fetchJobs = async () => {
     setLoading(true);
     try {
-      const res = await fetch("/api/v1/jobs", {
+      const API_URL = import.meta.env.VITE_API_URL || '';
+      const res = await fetch(`${API_URL}/api/v1/jobs`, {
         headers: { "Authorization": `Bearer ${localStorage.getItem("token")}` }
       });
       const data = await res.json();
@@ -97,7 +98,8 @@ export default function WorkerSearch() {
     if (!selectedJob || !user) return;
 
     try {
-      const res = await fetch("/api/v1/applications", {
+      const API_URL = import.meta.env.VITE_API_URL || '';
+      const res = await fetch(`${API_URL}/api/v1/applications`, {
         method: "POST",
         headers: { "Content-Type": "application/json", "Authorization": `Bearer ${localStorage.getItem('token')}` },
         body: JSON.stringify({

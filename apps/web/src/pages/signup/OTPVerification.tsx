@@ -63,7 +63,8 @@ export default function OTPVerification() {
     const formattedPhone = formatPhoneNumber(phone);
 
     try {
-      const response = await fetch('http://localhost:4000/api/v1/auth/send-otp', {
+      const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000';
+      const response = await fetch(`${API_URL}/api/v1/auth/send-otp`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ phone: formattedPhone, role: 'WORKER' }),
@@ -123,7 +124,8 @@ export default function OTPVerification() {
     const formattedPhone = formatPhoneNumber(phone);
 
     try {
-      const response = await fetch('http://localhost:4000/api/v1/auth/verify-otp', {
+      const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000';
+      const response = await fetch(`${API_URL}/api/v1/auth/verify-otp`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ phone: formattedPhone, code: otp }),

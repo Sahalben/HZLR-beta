@@ -21,7 +21,8 @@ export default function Login() {
   const handleRequestOtp = async () => {
     setLoading(true);
     try {
-      const res = await fetch("/api/v1/auth/send-otp", {
+      const API_URL = import.meta.env.VITE_API_URL || '';
+      const res = await fetch(`${API_URL}/api/v1/auth/send-otp`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ phone }),
@@ -97,8 +98,8 @@ export default function Login() {
                   <button
                     onClick={() => setUserType("worker")}
                     className={`flex-1 py-2 px-4 rounded-lg text-sm font-medium transition-colors ${userType === "worker"
-                        ? "bg-success text-success-foreground"
-                        : "bg-secondary text-secondary-foreground"
+                      ? "bg-success text-success-foreground"
+                      : "bg-secondary text-secondary-foreground"
                       }`}
                   >
                     I'm a Worker
@@ -106,8 +107,8 @@ export default function Login() {
                   <button
                     onClick={() => setUserType("employer")}
                     className={`flex-1 py-2 px-4 rounded-lg text-sm font-medium transition-colors ${userType === "employer"
-                        ? "bg-success text-success-foreground"
-                        : "bg-secondary text-secondary-foreground"
+                      ? "bg-success text-success-foreground"
+                      : "bg-secondary text-secondary-foreground"
                       }`}
                   >
                     I'm an Employer
@@ -119,8 +120,8 @@ export default function Login() {
                   <button
                     onClick={() => setMethod("phone")}
                     className={`flex-1 py-2 px-4 rounded-lg text-sm font-medium transition-colors ${method === "phone"
-                        ? "bg-primary text-primary-foreground"
-                        : "bg-secondary text-secondary-foreground"
+                      ? "bg-primary text-primary-foreground"
+                      : "bg-secondary text-secondary-foreground"
                       }`}
                   >
                     <Phone size={16} className="inline mr-2" />
@@ -129,8 +130,8 @@ export default function Login() {
                   <button
                     onClick={() => setMethod("email")}
                     className={`flex-1 py-2 px-4 rounded-lg text-sm font-medium transition-colors ${method === "email"
-                        ? "bg-primary text-primary-foreground"
-                        : "bg-secondary text-secondary-foreground"
+                      ? "bg-primary text-primary-foreground"
+                      : "bg-secondary text-secondary-foreground"
                       }`}
                   >
                     <Mail size={16} className="inline mr-2" />

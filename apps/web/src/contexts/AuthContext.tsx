@@ -59,7 +59,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     if (!token) return null;
 
     try {
-      const res = await fetch('/api/v1/auth/me', {
+      const API_URL = import.meta.env.VITE_API_URL || '';
+      const res = await fetch(`${API_URL}/api/v1/auth/me`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       if (res.ok) {
@@ -82,7 +83,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, [fetchProfile]);
 
   const loginWithOtp = async (phone: string, otp: string) => {
-    const res = await fetch('/api/v1/auth/verify-otp', {
+    const API_URL = import.meta.env.VITE_API_URL || '';
+    const res = await fetch(`${API_URL}/api/v1/auth/verify-otp`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ phone, otp })

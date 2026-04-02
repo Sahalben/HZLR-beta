@@ -94,7 +94,8 @@ export default function PostJob() {
 
       const dbCategory = CATEGORY_MAP[form.category] || 'other';
 
-      const res = await fetch("/api/v1/jobs", {
+      const API_URL = import.meta.env.VITE_API_URL || '';
+      const res = await fetch(`${API_URL}/api/v1/jobs`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -39,7 +39,8 @@ export default function WorkerWallet() {
     setLoading(true);
 
     try {
-      const response = await fetch(`http://localhost:4000/api/v1/wallets/${user.id}`, {
+      const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000';
+      const response = await fetch(`${API_URL}/api/v1/wallets/${user.id}`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('hzlr_access_token')}`
         }
